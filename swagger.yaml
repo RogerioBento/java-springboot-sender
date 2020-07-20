@@ -1,0 +1,70 @@
+swagger: "2.0"
+info:
+  description: ""
+  version: "1.0.0"
+  title: "Sender and Receiver"
+host: "app.sender"
+basePath: "/v1"
+tags:
+- name: "Carro"
+  description: "Everything about your Pets"
+schemes:
+- "http"
+paths:
+  /carros:
+    post:
+      tags:
+      - "Carro"
+      summary: "Add a new car into database"
+      description: ""
+      operationId: "addCar"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "The car to be added into database"
+        required: true
+        schema:
+          $ref: "#/definitions/Carro"
+      responses:
+        "201":
+          description: "Created"
+        "404":
+          description: "Not found"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+        "422":
+          description: "Unprocessable entity"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+definitions:
+  Carro:
+    type: "object"
+    properties:
+      cor:
+        type: "string"
+      modelo:
+        $ref: "#/definitions/Modelo"
+      placa:
+        type: "string"
+      valor:
+        type: "integer"
+        format: "int32"
+  Modelo:
+    type: "object"
+    properties:
+      nome:
+        type: "string"
+    xml:
+      name: "Pet"
+  ApiResponse:
+    type: "object"
+    properties:
+      code:
+        type: "integer"
+        format: "int32"
+      message:
+        type: "string"
