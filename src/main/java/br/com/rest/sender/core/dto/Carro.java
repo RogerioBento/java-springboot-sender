@@ -16,7 +16,7 @@ public class Carro {
 
   private String placa;
 
-  private Integer valor;
+  private Double valor;
 
 }
 
