@@ -1,15 +1,24 @@
 package br.com.rest.sender.service;
 
-import br.com.rest.sender.core.dto.Carro;
+import java.util.List;
+
+import br.com.rest.sender.core.dto.CarroDto;
 
 public interface CarroService {
 
-    public void salvar(Carro carro);
+    public List<CarroDto> buscarTodos();
 
-    public void deletar(int id);
+    public CarroDto buscarPorId(Integer id);
 
-    public void buscar(String nome);
+    public List<CarroDto> buscarPorNome(String nome);
 
-	public void buscarTodos();
+    
+    public CarroDto salvar(CarroDto carro);
+
+
+    public void alterar(Integer id, CarroDto carro);
+
+
+    public void deletar(Integer id);
 
 }

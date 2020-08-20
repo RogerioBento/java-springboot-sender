@@ -9,7 +9,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Modelo {
-  private String nome;
+public class ApiResponse {
+
+  private Integer code;
+  
+  private String message;
+
 }
 

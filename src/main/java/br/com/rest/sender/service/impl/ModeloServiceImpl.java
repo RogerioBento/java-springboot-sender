@@ -1,98 +1,95 @@
 package br.com.rest.sender.service.impl;
 
-import java.util.List;
-
+import br.com.rest.sender.core.client.ReceiverModeloClient;
+import br.com.rest.sender.core.dto.ModeloDto;
+import br.com.rest.sender.service.ModeloService;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.HttpServerErrorException;
 
-import br.com.rest.sender.core.client.ReceiverCarroClient;
-import br.com.rest.sender.core.dto.CarroDto;
-import br.com.rest.sender.service.CarroService;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import java.util.List;
 
 @Service
 @Slf4j
 @RequiredArgsConstructor(onConstructor_ = {@Autowired})
-public class CarroServiceImpl implements CarroService {
+public class ModeloServiceImpl implements ModeloService {
 
-    private final String constMessageException = "Http exception: ";
-    private final String constMessageUnknownException = "Unknown exception: ";
-    private final ReceiverCarroClient carroClient;
+    private final ReceiverModeloClient modeloClient;
 
     @Override
-    public List<CarroDto> buscarTodos() {
+    public List<ModeloDto> buscarTodos() {
         log.info("STEP -> Executing findAll");
 
         try {
-            return carroClient.findAll();
+            return modeloClient.findAll();
         } catch (HttpClientErrorException | HttpServerErrorException e) {
-            log.info(constMessageException, e.getMessage());
+            log.info("Http exception: ", e.getMessage());
             throw e;
         } catch (Exception e) {
-            log.info(constMessageUnknownException, e.getMessage());
+            log.info("Unknown exception: ", e.getMessage());
             throw e;
         }
     }
 
     @Override
-    public CarroDto buscarPorId(Integer id) {
+    public ModeloDto buscarPorId(Integer id) {
         log.info("STEP -> Executing findById");
 
         try {
-            return carroClient.findById(id);
+            return modeloClient.findById(id);
         } catch (HttpClientErrorException | HttpServerErrorException e) {
-            log.info(constMessageException, e.getMessage());
+            log.info("Http exception: ", e.getMessage());
             throw e;
         } catch (Exception e) {
-            log.info(constMessageUnknownException, e.getMessage());
+            log.info("Unknown exception: ", e.getMessage());
             throw e;
         }
     }
 
     @Override
-    public List<CarroDto> buscarPorNome(String nome) {
+    public List<ModeloDto> buscarPorNome(String nome) {
         log.info("STEP -> Executing findByName");
 
         try {
-            return carroClient.findByName(nome);
+            return modeloClient.findByName(nome);
         } catch (HttpClientErrorException | HttpServerErrorException e) {
-            log.info(constMessageException, e.getMessage());
+            log.info("Http exception: ", e.getMessage());
             throw e;
         } catch (Exception e) {
-            log.info(constMessageUnknownException, e.getMessage());
+            log.info("Unknown exception: ", e.getMessage());
             throw e;
         }
     }
 
     @Override
-    public CarroDto salvar(CarroDto carro) {
+    public ModeloDto salvar(ModeloDto modelo) {
         log.info("STEP -> Executing create");
 
         try {
-            return carroClient.create(carro);
+            return modeloClient.create(modelo);
         } catch (HttpClientErrorException | HttpServerErrorException e) {
-            log.info(constMessageException, e.getMessage());
+            log.info("Http exception: ", e.getMessage());
             throw e;
         } catch (Exception e) {
-            log.info(constMessageUnknownException, e.getMessage());
+            log.info("Unknown exception: ", e.getMessage());
             throw e;
         }
     }
 
     @Override
-    public void alterar(Integer id, CarroDto carro) {
+    public void alterar(Integer id, ModeloDto modelo) {
         log.info("STEP -> Executing update");
 
         try {
-            carroClient.update(id, carro);
+            modeloClient.update(id, modelo);
         } catch (HttpClientErrorException | HttpServerErrorException e) {
-            log.info(constMessageException, e.getMessage());
+            log.info("Http exception: ", e.getMessage());
             throw e;
         } catch (Exception e) {
-            log.info(constMessageUnknownException, e.getMessage());
+            log.info("Unknown exception: ", e.getMessage());
             throw e;
         }
     }
@@ -102,12 +99,12 @@ public class CarroServiceImpl implements CarroService {
         log.info("STEP -> Executing delete");
 
         try {
-            carroClient.delete(id);
+            modeloClient.delete(id);
         } catch (HttpClientErrorException | HttpServerErrorException e) {
-            log.info(constMessageException, e.getMessage());
+            log.info("Http exception: ", e.getMessage());
             throw e;
         } catch (Exception e) {
-            log.info(constMessageUnknownException, e.getMessage());
+            log.info("Unknown exception: ", e.getMessage());
             throw e;
         }
     }

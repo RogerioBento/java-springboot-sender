@@ -1,0 +1,11 @@
+
+server:
+  port: ${SERVER_PORT}
+
+api:
+  receiver:
+    uri: ${API_RECEIVER_URI}
+
+logging:
+  level:
+    br.com.rest.sender: "INFO"

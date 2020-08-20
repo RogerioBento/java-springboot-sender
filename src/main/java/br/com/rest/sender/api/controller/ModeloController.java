@@ -15,53 +15,52 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.rest.sender.api.constant.UriConstants;
-import br.com.rest.sender.core.dto.CarroDto;
-import br.com.rest.sender.service.CarroService;
+import br.com.rest.sender.core.dto.ModeloDto;
+import br.com.rest.sender.service.ModeloService;
 import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequiredArgsConstructor(onConstructor_ = { @Autowired })
-public class CarroController {
-
-    private final CarroService carroService;
+public class ModeloController {
+    
+    private final ModeloService modeloService;
 
     // GET
-    @GetMapping(value = UriConstants.SenderCarro.V1_Carro)
+    @GetMapping(value = UriConstants.SenderModelo.V1_Modelo)
     @ResponseBody
-    public List<CarroDto> fildAll() {
-        return carroService.buscarTodos();
+    public List<ModeloDto> fildAll() {
+        return modeloService.buscarTodos();
     }
 
-    @GetMapping(value = UriConstants.SenderCarro.V1_Carro_Id)
+    @GetMapping(value = UriConstants.SenderModelo.V1_Modelo_Id)
     @ResponseBody
-    public CarroDto findById(@PathVariable("id") Integer id) {
-        return carroService.buscarPorId(id);
+    public ModeloDto findById(@PathVariable("id") Integer id) {
+        return modeloService.buscarPorId(id);
     }
 
-    @GetMapping(value = UriConstants.SenderCarro.V1_Carro_Nome)
+    @GetMapping(value = UriConstants.SenderModelo.V1_Modelo_Nome)
     @ResponseBody
-    public List<CarroDto> findByName(@PathVariable("nome") String nome) {
-        return carroService.buscarPorNome(nome);
+    public List<ModeloDto> findByName(@PathVariable("nome") String nome) {
+        return modeloService.buscarPorNome(nome);
     }
 
     // POST
-    @PostMapping(value = UriConstants.SenderCarro.V1_Carro)
+    @PostMapping(value = UriConstants.SenderModelo.V1_Modelo)
     @ResponseStatus(HttpStatus.CREATED)
-    public CarroDto novo(@RequestBody CarroDto carro) {
-        return carroService.salvar(carro);
+    public ModeloDto novo(@RequestBody ModeloDto modelo) {
+        return modeloService.salvar(modelo);
     }
 
     // PUT
-    @PutMapping(value = UriConstants.SenderCarro.V1_Carro)
+    @PutMapping(value = UriConstants.SenderModelo.V1_Modelo)
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void alterar(@PathVariable Integer id, @RequestBody CarroDto carro) {
-        carroService.alterar(id, carro);
+    public void alterar(@PathVariable Integer id, @RequestBody ModeloDto modelo) {
+        modeloService.alterar(id, modelo);
     }
 
     // DELETE
-    @DeleteMapping(value = UriConstants.SenderCarro.V1_Carro_Id)
+    @DeleteMapping(value = UriConstants.SenderModelo.V1_Modelo_Id)
     public void deletar(@PathVariable("id") Integer id) {
-        carroService.deletar(id);
+        modeloService.deletar(id);
     }
-
 }

@@ -1,18 +1,24 @@
 package br.com.rest.sender.core.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
-public class Carro {
+public class CarroDto {
+
+  @JsonProperty("idcarro")
+  private Integer id;
+
   private String cor;
 
-  private Modelo modelo;
+  private ModeloDto modelo;
 
   private String placa;
 
